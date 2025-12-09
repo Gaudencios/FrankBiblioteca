@@ -42,6 +42,8 @@ public class EmprestarLivro {
         this.emprestimoController = new EmprestimoController();
 
         configurarTabelas();
+        buscarAlunos();
+        buscarLivros();
 
         textBuscarAluno.getDocument().addDocumentListener(new DocumentListener() {
             @Override

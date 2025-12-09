@@ -119,4 +119,47 @@ public class EmprestimoRepository {
         }
         return emprestimos;
     }
+
+
+    public List<EmprestimoModel> buscarTodosPorAluno(AlunoModel aluno) {
+        EntityManager em = Conexao.getEntityManagerFactory().createEntityManager();
+        List<EmprestimoModel> emprestimos = null;
+        try {
+            String jpql = "SELECT e FROM EmprestimoModel e JOIN FETCH e.aluno a JOIN FETCH e.livro l WHERE e.aluno = :aluno";
+
+            TypedQuery<EmprestimoModel> query = em.createQuery(jpql, EmprestimoModel.class);
+            query.setParameter("aluno", aluno);
+            emprestimos = query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Erro ao buscar histórico de empréstimos por aluno: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return emprestimos;
+    }
+
+    public void excluir(Long id) {
+        EntityManager em = Conexao.getEntityManagerFactory().createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            EmprestimoModel emprestimo = em.find(EmprestimoModel.class, id);
+            if (emprestimo != null) {
+                em.remove(emprestimo);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.err.println("Erro ao excluir o empréstimo: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+
 }

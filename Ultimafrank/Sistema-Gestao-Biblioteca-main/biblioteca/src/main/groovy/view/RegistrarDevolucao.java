@@ -60,6 +60,8 @@ public class RegistrarDevolucao {
         });
     }
 
+
+
     private void configurarTabela() {
         String[] colunas = {"ID Empr.", "Livro", "Aluno", "Data Empréstimo", "Data Prevista"};
         emprestimoTableModel = new DefaultTableModel(colunas, 0) {

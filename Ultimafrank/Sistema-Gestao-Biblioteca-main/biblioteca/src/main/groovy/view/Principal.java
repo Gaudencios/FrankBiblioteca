@@ -38,14 +38,26 @@ public class Principal extends JFrame {
         JMenuItem devolucaoLivro = new JMenuItem("Registrar Devolução");
         JMenuItem listarEmprestados = new JMenuItem("Listar Livros Emprestados");
 
+        JMenu menuApagar = new JMenu("Apagar");
+        JMenuItem excluirLivro = new JMenuItem("apagar Livro");
+        JMenuItem excluiraluno = new JMenuItem("Apagar aluno");
+
+        menuApagar.add(excluiraluno);
+        menuApagar.add(excluirLivro);
+
+
+
         menuOperacoes.add(emprestimoLivro);
         menuOperacoes.add(devolucaoLivro);
         menuOperacoes.addSeparator();
         menuOperacoes.add(listarEmprestados);
 
 
+
+
         jmenuBar.add(menuCadastros);
         jmenuBar.add(menuOperacoes);
+        jmenuBar.add(menuApagar);
 
 
         cadastrarLivro.addActionListener(new ActionListener() {
@@ -119,9 +131,41 @@ public class Principal extends JFrame {
            }
 
         });
+        excluiraluno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ExcluirAluno telaexcluiraluno = new ExcluirAluno();
+                JFrame frameexcluiraluno = new JFrame("Excluir alunos");
+                frameexcluiraluno.setContentPane(telaexcluiraluno.getPanel());
+                frameexcluiraluno.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frameexcluiraluno.setSize(800, 600);
+                frameexcluiraluno.setLocationRelativeTo(null);
+                frameexcluiraluno.setVisible(true);
+
+            }
+            });
+
+             excluirLivro.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Excluirlivro telaApagarLivro = new Excluirlivro();
+                    JFrame frameApagarLivro = new JFrame("Apagar Livros");
+
+                    frameApagarLivro.setContentPane(telaApagarLivro.getPanel());
+                    frameApagarLivro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frameApagarLivro.setSize(800, 600);
+                    frameApagarLivro.setLocationRelativeTo(null);
+                    frameApagarLivro.setVisible(true);
+                }
+            });
+
+
+        }
+
+        }
 
 
 
 
-    }
-}
+
+

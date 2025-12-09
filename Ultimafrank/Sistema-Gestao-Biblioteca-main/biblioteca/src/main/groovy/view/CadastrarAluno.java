@@ -30,7 +30,7 @@ public class CadastrarAluno {
         this.alunoController = new AlunoController();
 
         try {
-            MaskFormatter mascaraCelular = new MaskFormatter("(11) 11111-1111");
+            MaskFormatter mascaraCelular = new MaskFormatter("(##) #####-####");
             mascaraCelular.setPlaceholderCharacter('_');
             mascaraCelular.install(TextCelular);
         } catch (ParseException e) {
